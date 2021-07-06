@@ -1,0 +1,6 @@
+-r ./base.txt
+
+black==21.6b0
+flake8==3.9.2
+pre-commit==2.13.0
+psycopg2-binary==2.9.1
