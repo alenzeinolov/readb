@@ -1,10 +1,19 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import Login from "./features/auth/Login";
 import AuthContext from "./contexts/AuthContext";
 import { useEffect, useState } from "react";
 import Home from "./components/Home";
+import { Button } from "@chakra-ui/react";
 
 function App() {
+  const history = useHistory();
+
   const [accessToken, setAccessToken] = useState("");
 
   useEffect(() => {
@@ -19,6 +28,11 @@ function App() {
     setAccessToken(token);
   };
 
+  const logout = () => {
+    localStorage.setItem("token", "");
+    history.push("/login");
+  };
+
   return (
     <div>
       <AuthContext.Provider value={{ accessToken, setAccessToken: login }}>
@@ -27,6 +41,12 @@ function App() {
           <Link to="/">Home</Link>
           <br />
           <Link to="/login">Login</Link>
+          <br />
+          {accessToken ? (
+            <Button colorScheme="blue" onClick={logout}>
+              Log Out
+            </Button>
+          ) : null}
           <hr />
 
           <Switch>
