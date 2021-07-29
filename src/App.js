@@ -1,5 +1,10 @@
+import Home from "./components/Home";
+import Login from "./components/Login";
+import { useUser } from "./components/UserProvider";
+
 function App() {
-  return <div>app</div>;
+  const user = useUser();
+  return user ? <Home /> : <Login />;
 }
 
 export default App;
