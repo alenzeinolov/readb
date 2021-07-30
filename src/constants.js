@@ -6,3 +6,4 @@ export const USER_INFO_URL = `${SERVER_URL}/users/me/`;
 
 // Books
 export const BOOKS_URL = `${SERVER_URL}/books/`;
+export const USER_BOOKS_URL = `${SERVER_URL}/user-books/`;

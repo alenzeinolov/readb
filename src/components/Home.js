@@ -16,6 +16,7 @@ import { BiLogOut } from "react-icons/bi";
 import Search from "./Search";
 import { useUser } from "./UserProvider";
 import { useAuth } from "./AuthProvider";
+import Library from "./Library";
 
 function Home() {
   const auth = useAuth();
@@ -47,7 +48,7 @@ function Home() {
 
         <Switch>
           <Route path="/my-list">
-            <Search />
+            <Library />
           </Route>
           <Route path="/" exact>
             <Search />
