@@ -19,7 +19,7 @@ class Book(models.Model):
         related_name="books",
         related_query_name="book",
     )
-    published_on = models.DateTimeField()
+    published_on = models.DateField()
 
     class Meta:
         ordering = ["title"]

@@ -71,7 +71,12 @@ function Login() {
                       isInvalid={form.errors.password && form.touched.password}
                     >
                       <FormLabel htmlFor="name">Password</FormLabel>
-                      <Input {...field} id="name" placeholder="Password" />
+                      <Input
+                        {...field}
+                        id="name"
+                        type="password"
+                        placeholder="Password"
+                      />
                       <FormErrorMessage>
                         {form.errors.password}
                       </FormErrorMessage>
