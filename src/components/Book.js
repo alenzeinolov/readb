@@ -7,10 +7,45 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import { FiChevronDown } from "react-icons/fi";
+import { useMutation, useQueryClient } from "react-query";
+import axios from "axios";
+import { USER_BOOKS_URL } from "../constants";
+import { useAuth } from "./AuthProvider";
 
 function Book({ book }) {
+  const queryClient = useQueryClient();
+
+  const toast = useToast();
+
+  const auth = useAuth();
+
+  const mutation = useMutation(
+    (book) =>
+      axios.post(USER_BOOKS_URL, book, {
+        headers: {
+          Authorization: `Token ${auth.data.token}`,
+        },
+      }),
+    {
+      onSuccess: () => queryClient.invalidateQueries("books"),
+      onError: (e) =>
+        toast({
+          description: e.message,
+          status: "error",
+        }),
+    }
+  );
+
+  function addBookToLibrary(bookId, status) {
+    mutation.mutate({
+      book: bookId,
+      status,
+    });
+  }
+
   return (
     <Flex
       p={4}
@@ -34,14 +69,21 @@ function Book({ book }) {
           <MenuButton
             as={Button}
             colorScheme="blue"
+            isLoading={mutation.isLoading}
             rightIcon={<FiChevronDown />}
           >
             Add to library
           </MenuButton>
           <MenuList>
-            <MenuItem>Want to read</MenuItem>
-            <MenuItem>Reading</MenuItem>
-            <MenuItem>Read</MenuItem>
+            <MenuItem onClick={() => addBookToLibrary(book.id, "WANT_TO_READ")}>
+              Want to read
+            </MenuItem>
+            <MenuItem onClick={() => addBookToLibrary(book.id, "READING")}>
+              Reading
+            </MenuItem>
+            <MenuItem onClick={() => addBookToLibrary(book.id, "READ")}>
+              Read
+            </MenuItem>
           </MenuList>
         </Menu>
       )}

@@ -21,9 +21,8 @@ function Search() {
     setBooks(res.data);
   };
 
-  const { isLoading, refetch } = useQuery(["posts", search], fetchBooks, {
+  const { isLoading, refetch } = useQuery(["books", search], fetchBooks, {
     cacheTime: 0,
-    enabled: false,
   });
 
   useEffect(() => {

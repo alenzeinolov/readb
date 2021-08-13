@@ -19,7 +19,6 @@ class UserBookWriteSerializer(serializers.ModelSerializer):
     user = serializers.HiddenField(
         default=serializers.CurrentUserDefault(),
     )
-    status_display = serializers.CharField(source='get_status_display')
 
     class Meta:
         model = UserBook
