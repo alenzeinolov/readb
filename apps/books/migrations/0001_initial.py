@@ -7,31 +7,53 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Author',
+            name="Author",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('full_name', models.CharField(max_length=500)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("full_name", models.CharField(max_length=500)),
             ],
             options={
-                'ordering': ['full_name'],
+                "ordering": ["full_name"],
             },
         ),
         migrations.CreateModel(
-            name='Book',
+            name="Book",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=500)),
-                ('isbn', models.CharField(max_length=50, unique=True)),
-                ('published_on', models.DateField()),
-                ('authors', models.ManyToManyField(related_name='books', related_query_name='book', to='books.Author')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=500)),
+                ("isbn", models.CharField(max_length=50, unique=True)),
+                ("published_on", models.DateField()),
+                (
+                    "authors",
+                    models.ManyToManyField(
+                        related_name="books",
+                        related_query_name="book",
+                        to="books.Author",
+                    ),
+                ),
             ],
             options={
-                'ordering': ['title'],
+                "ordering": ["title"],
             },
         ),
     ]

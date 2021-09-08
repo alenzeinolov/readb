@@ -1,10 +1,9 @@
+from books.models import Book
 from django.conf import settings
 from django.db import models
 from model_utils import Choices
 from model_utils.fields import MonitorField
 from model_utils.models import StatusModel, TimeStampedModel
-
-from books.models import Book
 
 
 class UserBook(StatusModel, TimeStampedModel):

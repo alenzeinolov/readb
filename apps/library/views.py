@@ -1,9 +1,7 @@
-from rest_framework import viewsets
-
 from library.models import UserBook
 from library.serializers import UserBookReadSerializer, UserBookWriteSerializer
-
-from apps.tools.mixins import ReadWriteSerializerMixin
+from rest_framework import viewsets
+from tools.mixins import ReadWriteSerializerMixin
 
 
 class UserBookViewSet(ReadWriteSerializerMixin, viewsets.ModelViewSet):

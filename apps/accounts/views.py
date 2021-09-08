@@ -13,7 +13,7 @@ class UserViewSet(ModelViewSet):
     queryset = User.objects.none()
     serializer_class = UserSerializer
 
-    @action(methods=['get'], detail=False)
+    @action(methods=["get"], detail=False)
     def me(self, request, **kwargs):
         user = get_object_or_404(User, pk=request.user.pk)
         serializer = UserSerializer(instance=user)
